@@ -8,6 +8,7 @@ property reuse_tab : false
 property timeout_seconds : 3
 property shell_load_delay : 1.0 -- Delay for session to load
 property switch_delay : 0.35 -- Delay when switching windows
+property prepend_space_to_commands : true
 
 on isRunning()
     application "Ghostty" is running
@@ -107,6 +108,9 @@ on send(a_command, just_activated)
     
     tell application "System Events"
         tell process "Ghostty"
+            if prepend_space_to_commands then
+                keystroke " "
+            end if
             keystroke "v" using command down
             if run_cmd then
                 delay 0.1
@@ -149,6 +153,9 @@ on send_quick_terminal(a_command, needs_wakeup)
             set quickTermItem to menu item "Quick Terminal" of viewMenu
             click quickTermItem
             --delay 0.1
+            if prepend_space_to_commands then
+                keystroke " "
+            end if
             keystroke "v" using command down
             if run_cmd then
                 delay 0.1
