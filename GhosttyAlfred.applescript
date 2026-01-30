@@ -88,7 +88,7 @@ on send(a_command, just_activated)
     --  'Open Terminal Here' Universal Action is also handled properly.
     do shell script "mkdir -p /tmp/alfred_ghostty"
     set cmd_file to "/tmp/alfred_ghostty/cmd.txt"
-    do shell script "echo " & quoted form of a_command & " | iconv -t utf-8 > " & cmd_file -- Write command to file with explicit UTF-8 encoding
+    do shell script "printf " & quoted form of a_command & " | iconv -t utf-8 > " & cmd_file -- Write command to file with explicit UTF-8 encoding
     
     try
         -- Works with editor, always fails with Alfred
@@ -143,7 +143,7 @@ on send_quick_terminal(a_command, needs_wakeup)
     
     do shell script "mkdir -p /tmp/alfred_ghostty"
     set cmd_file to "/tmp/alfred_ghostty/cmd.txt"
-    do shell script "echo " & quoted form of a_command & " | iconv -t utf-8 > " & cmd_file
+    do shell script "printf " & quoted form of a_command & " | iconv -t utf-8 > " & cmd_file
     do shell script "export LC_ALL=en_US.UTF-8; cat " & cmd_file & " | pbcopy" -- Copy file contents to clipboard
     delay 0.1
     
