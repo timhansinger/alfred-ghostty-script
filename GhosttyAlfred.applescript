@@ -102,7 +102,7 @@ on send(a_command, just_activated)
     --log_("Command passed: ", a_command)
     --log_("File content: ", "$(cat " & cmd_file & ")")
     
-    do shell script "export LC_ALL=en_US.UTF-8; cat " & cmd_file & " | tr -d '\\n' | pbcopy" -- Copy file contents to clipboard
+    do shell script "export LC_ALL=en_US.UTF-8; cat " & cmd_file & " | pbcopy" -- Copy file contents to clipboard
     delay 0.1
     
     tell application "System Events"
@@ -140,7 +140,7 @@ on send_quick_terminal(a_command, needs_wakeup)
     do shell script "mkdir -p /tmp/alfred_ghostty"
     set cmd_file to "/tmp/alfred_ghostty/cmd.txt"
     do shell script "echo " & quoted form of a_command & " | iconv -t utf-8 > " & cmd_file
-    do shell script "export LC_ALL=en_US.UTF-8; cat " & cmd_file & " | tr -d '\\n' | pbcopy" -- Copy file contents to clipboard
+    do shell script "export LC_ALL=en_US.UTF-8; cat " & cmd_file & " | pbcopy" -- Copy file contents to clipboard
     delay 0.1
     
     tell application "System Events"
